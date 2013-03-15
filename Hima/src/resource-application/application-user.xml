@@ -1,5 +1,6 @@
-﻿<?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
 	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:tx="http://www.springframework.org/schema/tx"
 	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
@@ -13,7 +14,11 @@
 						http://www.springframework.org/schema/tx/spring-tx-3.0.xsd 
 						http://www.springframework.org/schema/mvc
 						http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
-
-	<bean id="testDao" class="com.hima.sejie.dao.TestDao" parent="baseDao"></bean>
-	<bean id="cut" class="com.hima.sejie.dao.CutPageBean"></bean>
+		
+	<!-- 定义所有的资源路由 -->
+  <bean name="/hello" class="com.hima.sejie.resources.HelloResource">
+  	<property name="cutpage">
+  		<ref bean="cut" />
+  	</property>
+  </bean>
 </beans>

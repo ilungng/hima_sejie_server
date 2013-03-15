@@ -17,13 +17,14 @@
    <!-- spring配置文件 -->
 	<!-- 配置restlet的bean对象 -->	
 	<bean id="component" class="org.restlet.ext.spring.SpringComponent">
-        <property name="defaultTarget" ref="application" />
+        <property name="defaultTarget" ref="router" />
     </bean>
     <!--  定义路由 -->
     <bean name="router" class="org.restlet.ext.spring.SpringBeanRouter" />
-				
+				<!-- 
 	<bean id="application" class="com.chj.applications.BaseApplication">
         <property name="root" ref="router" />
-    </bean>					
+    </bean>			
+     -->		
 	<import resource="resource-application/application-user.xml"/>
 </beans>
