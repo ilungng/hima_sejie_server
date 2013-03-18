@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+	<bean id="dataSource"
+		class="org.apache.commons.dbcp.BasicDataSource">
+		<property name="driverClassName"
+			value="com.mysql.jdbc.Driver">
+		</property>
+		<property name="url" value="jdbc:mysql://localhost:3306/test"></property>
+		<property name="username" value="root"></property>
+		<property name="password" value="Aa123456"></property>
+	</bean>
+	<bean id="sessionFactory"
+		class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+		<property name="dataSource">
+			<ref bean="dataSource" />
+		</property>
+		<property name="hibernateProperties">
+			<props>
+				<prop key="hibernate.dialect">
+					org.hibernate.dialect.MySQLDialect
+				</prop>
+			</props>
+		</property>
+		<property name="mappingResources">
+			<list>
+				<value>com/hima/sejie/bean/User.hbm.xml</value></list>
+		</property></bean>
+		<bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+	     <property name="dataSource">
+	         <ref bean="dataSource"/>
+	     </property>
+	</bean>
+	<!-- 配置事务处理 -->
+	<bean id="bd" class="org.springframework.transaction.interceptor.TransactionProxyFactoryBean">
+	   <property name="transactionManager">
+	       <ref bean="transactionManager"/>
+	   </property>
+	   <property name="target">
+	      <ref bean="baseDao"/>
+	   </property>
+	   
+	   <property name="transactionAttributes">
+	      <props>
+	          <prop key="insert">PROPAGATION_REQUIRED</prop>
+	          <prop key="update">PROPAGATION_REQUIRED</prop>
+	          <prop key="delete">PROPAGATION_REQUIRED</prop>
+	      </props>
+	   </property>
+	</bean>
+		<!-- 完成dao注册 -->
+	<bean id="baseDao" class="com.hima.sejie.dao.BaseDao">
+		<property name="sessionFactory">
+		  <ref bean="sessionFactory" />
+		</property>
+	</bean>
+	<import resource="applicationContext-useradmin.xml"/>
+	</beans>
