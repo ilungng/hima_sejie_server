@@ -1,5 +1,7 @@
-#Fri Mar 15 17:37:14 CST 2013
+#Fri Mar 22 16:33:35 CST 2013
 eclipse.preferences.version=1
 encoding//src/com/hima/sejie/dao/BaseDao.java=UTF-8
 encoding//src/com/hima/sejie/dao/IDao.java=UTF-8
 encoding//src/com/hima/sejie/utils/PojoMapper.java=UTF-8
+encoding//src/com/igetui/push/PushGroupMessageDemo.java=UTF-8
+encoding//src/com/igetui/push/PushMessageDemo.java=UTF-8
